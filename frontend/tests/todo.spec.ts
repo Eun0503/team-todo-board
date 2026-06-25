@@ -25,7 +25,8 @@ test.describe('Weekly Todo Planner E2E', () => {
     const editButton = todoItem.getByRole('button', { name: '수정' });
     await editButton.click();
     
-    const editInput = todoItem.locator('input[type="text"]').last();
+    // 수정 모드 진입 시 텍스트가 input 안으로 들어가 hasText 필터가 깨지므로 page 레벨에서 input을 찾습니다.
+    const editInput = page.locator('input.edit-input').last();
     await editInput.fill('수정된 자동화 투두');
     await editInput.press('Enter');
 
