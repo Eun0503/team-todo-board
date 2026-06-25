@@ -33,16 +33,26 @@ test.describe('Weekly Todo Planner E2E', () => {
     // 수정 반영 확인
     await expect(page.locator('text=수정된 자동화 투두')).toBeVisible();
 
-    // 5. 날짜 이동 테스트
+    // 5. 날짜 이동 테스트 (다음 주 -> 첫째 날 선택 -> 다시 돌아와서 오늘 선택)
     const nextWeekBtn = page.getByRole('button', { name: '다음 주' });
     await nextWeekBtn.click();
     
-    // 날짜 이동 후 해당 투두가 안 보이는지 확인 (다른 날짜니까)
+    // 다음 주 첫 번째 요일 카드 클릭하여 선택 날짜 변경
+    await page.locator('.week-days-container > div').first().click();
+    
+    // 날짜가 바뀌었으므로 방금 작성한 투두가 사라져야 함
     await expect(page.locator('text=수정된 자동화 투두')).toBeHidden();
 
     // 다시 이전 주로 돌아오기
     const prevWeekBtn = page.getByRole('button', { name: '이전 주' });
     await prevWeekBtn.click();
+
+    // 오늘 날짜 카드 다시 클릭하여 투두 불러오기
+    const todayDateStr = new Date().getDate().toString();
+    const todaySpan = page.locator('span.text-sm.font-semibold').filter({ hasText: new RegExp(`^${todayDateStr}$`) });
+    await todaySpan.click();
+
+    // 원래 날짜로 돌아왔으니 투두가 다시 보여야 함
     await expect(page.locator('text=수정된 자동화 투두')).toBeVisible();
 
     // 6. 투두 삭제 테스트
