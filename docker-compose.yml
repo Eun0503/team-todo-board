@@ -9,7 +9,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./data:/app/data
+      - todo_data:/app/data
     environment:
       - DATABASE_URL=sqlite:////app/data/todos.db
       - TZ=Asia/Seoul
@@ -27,3 +27,6 @@ services:
       - BACKEND_URL=http://backend:8000
       - NEXT_PUBLIC_API_URL=http://localhost:8000
       - TZ=Asia/Seoul
+
+volumes:
+  todo_data:
