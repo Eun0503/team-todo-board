@@ -26,7 +26,11 @@ jobs:
         if: always()
         run: docker-compose -f docker-compose.test.yml down -v
 
-      - name: 🚀 CD Deploy (Safe Deployment)
+      - name: 🚀 Build K8s Images
         run: |
-          docker-compose down
-          docker-compose up -d
+          docker build -t team-todo-board-backend:for-k8s ./backend
+          docker build -t team-todo-board-frontend:for-k8s ./frontend
+          
+      - name: 🔄 Trigger K8s Rolling Update
+        run: |
+          kubectl rollout restart deployment backend frontend || echo "Deployments not found yet, ArgoCD will create them!"
