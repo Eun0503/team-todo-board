@@ -12,6 +12,7 @@ services:
       - ./data:/app/data
     environment:
       - DATABASE_URL=sqlite:////app/data/todos.db
+      - TZ=Asia/Seoul
 
   frontend:
     build:
@@ -25,3 +26,4 @@ services:
     environment:
       - BACKEND_URL=http://backend:8000
       - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - TZ=Asia/Seoul
