@@ -6,7 +6,7 @@ test.describe('Weekly Todo Planner E2E', () => {
     await page.goto('/');
 
     // 2. 투두 추가 테스트
-    const input = page.getByPlaceholder('새로운 할 일을 입력하세요...');
+    const input = page.getByPlaceholder('오늘 할 일을 입력하세요...');
     await input.fill('CI 자동화 테스트 투두');
     await input.press('Enter');
 
