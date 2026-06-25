@@ -32,5 +32,6 @@ jobs:
           docker build -t team-todo-board-frontend:for-k8s ./frontend
           
       - name: 🔄 Trigger K8s Rolling Update
+        continue-on-error: true
         run: |
-          kubectl rollout restart deployment backend frontend || echo "Deployments not found yet, ArgoCD will create them!"
+          kubectl rollout restart deployment backend frontend
