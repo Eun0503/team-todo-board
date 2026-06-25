@@ -19,7 +19,7 @@ export default function TodoForm({ onAddTodo }: TodoFormProps) {
     }
 
     setFormError("");
-    //onAddTodo(trimmed);
+    onAddTodo(trimmed);
     setTodoText("");
   };
 
