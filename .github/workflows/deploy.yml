@@ -13,7 +13,10 @@ jobs:
       - name: 📥 Checkout repository
         uses: actions/checkout@v3
 
-      - name: 🚀 Deploy with Docker Compose
+      - name: 🔬 CI Test (Build & Lint Check)
+        run: docker-compose build
+
+      - name: 🚀 CD Deploy (Safe Deployment)
         run: |
           docker-compose down
-          docker-compose up --build -d
+          docker-compose up -d
