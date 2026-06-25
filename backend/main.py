@@ -18,8 +18,8 @@ if os.path.exists(env_path):
             if line.startswith("DATABASE_URL="):
                 db_url = line.strip().split("=", 1)[1]
 
-# DB 설정
-DATABASE_URL = db_url
+# 환경변수에 DATABASE_URL이 있으면 우선 적용 (도커 호환성)
+DATABASE_URL = os.environ.get("DATABASE_URL", db_url)
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
