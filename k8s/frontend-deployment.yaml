@@ -16,7 +16,7 @@ spec:
       containers:
         - name: frontend
           image: team-todo-board-frontend:for-k8s
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 3000
