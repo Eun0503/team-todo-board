@@ -42,9 +42,13 @@ if ($LASTEXITCODE -ne 0) {
     exit 0
 }
 
-# 5. 브라우저 접속을 위해 자동으로 포트 포워딩 실행
+# 5. 브라우저 접속을 위해 자동으로 포트 포워딩 실행 (자동 재연결 루프 적용)
 Write-Host "Starting automatic port-forwarding..." -ForegroundColor Green
 Write-Host "Access URL: http://localhost:30081" -ForegroundColor Green
-Write-Host "Press Ctrl+C to stop port-forwarding." -ForegroundColor Yellow
+Write-Host "Press Ctrl+C to stop port-forwarding and exit." -ForegroundColor Yellow
 
-kubectl port-forward svc/frontend-svc 30081:80
+while ($true) {
+    kubectl port-forward svc/frontend-svc 30081:80
+    Write-Warning "Port-forwarding connection lost. Reconnecting in 1 second..."
+    Start-Sleep -Seconds 1
+}
