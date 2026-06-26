@@ -30,8 +30,6 @@ jobs:
         run: |
           docker build -t team-todo-board-backend:for-k8s ./backend
           docker build -t team-todo-board-frontend:for-k8s ./frontend
-          kind load docker-image team-todo-board-backend:for-k8s --name desktop
-          kind load docker-image team-todo-board-frontend:for-k8s --name desktop
           
       - name: 🔄 Trigger K8s Rolling Update
         continue-on-error: true
