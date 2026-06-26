@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: backend
-          image: team-todo-board-backend:for-k8s
-          imagePullPolicy: IfNotPresent
+          image: eun0503/team-todo-board-backend:for-k8s
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 8000

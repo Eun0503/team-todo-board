@@ -28,8 +28,10 @@ jobs:
 
       - name: 🚀 Build K8s Images
         run: |
-          docker build -t team-todo-board-backend:for-k8s ./backend
-          docker build -t team-todo-board-frontend:for-k8s ./frontend
+          docker build -t eun0503/team-todo-board-backend:for-k8s ./backend
+          docker build -t eun0503/team-todo-board-frontend:for-k8s ./frontend
+          docker push eun0503/team-todo-board-backend:for-k8s
+          docker push eun0503/team-todo-board-frontend:for-k8s
           
       - name: 🔄 Trigger K8s Rolling Update
         continue-on-error: true

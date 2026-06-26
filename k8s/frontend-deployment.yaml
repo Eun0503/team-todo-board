@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: team-todo-board-frontend:for-k8s
+          image: eun0503/team-todo-board-frontend:for-k8s
           imagePullPolicy: Always
           ports:
             - name: http
