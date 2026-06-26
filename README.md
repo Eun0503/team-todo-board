@@ -74,11 +74,8 @@ graph TD
 | | 종료 | `docker-compose down -v` | 컨테이너 중지 및 볼륨 데이터 초기화 |
 | **E2E 테스트** (Playwright) | 실행 | `docker-compose -f docker-compose.test.yml up --build -d backend-test frontend-test && docker-compose -f docker-compose.test.yml run --rm playwright` | 테스트 서버 기동 및 자동 테스트 일괄 실행 |
 | | 정리 | `docker-compose -f docker-compose.test.yml down -v` | 테스트 격리 환경 리소스 일괄 정리 |
-| **Kubernetes 환경** (Local/Prod) | 기동 (자동) | `powershell -ExecutionPolicy Bypass -File .\deploy-local.ps1` | 로컬 볼륨 폴더 생성, 도커 빌드, k8s 매니페스트 배포 일괄 처리 |
-| | 종료 (자동) | `powershell -ExecutionPolicy Bypass -File .\clean-local.ps1` | k8s 매니페스트 기반 리소스 일괄 삭제 |
-| | 기동 (수동) | `kubectl apply -f k8s/` | k8s 폴더 내 매니페스트 변경 사항 적용 |
-| | 조회 (수동) | `kubectl get all` | 클러스터 내 구동 리소스 상태 모니터링 |
-| | 종료 (수동) | `kubectl delete -f k8s/` | 배포 리소스 수동 일괄 삭제 |
+| **Kubernetes 환경** (Local/Prod) | 기동 | `.\deploy-local.ps1` | 로컬 볼륨 폴더 생성, 도커 빌드, k8s 매니페스트 배포 일괄 처리 |
+| | 종료 | `.\clean-local.ps1` | k8s 매니페스트 기반 리소스 일괄 삭제 |
 
 ---
 
