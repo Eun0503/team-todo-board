@@ -4,10 +4,11 @@ metadata:
   name: frontend-svc
   namespace: default
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: frontend
   ports:
     - name: http
       port: 80
       targetPort: 3000
+      nodePort: 30089
